@@ -1,0 +1,29 @@
+.root {
+  width: 100%;
+  background-color: #fff;
+}
+
+.search {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 18px 50px 15px 26px;
+  max-width: 631px;
+  color: #fff;
+  background-color: #5A5C66;
+  border-color: transparent;
+
+  background-image: url('../../images/search.png');
+  background-size: 21px 21px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 24px) center;
+  transition: border .2s linear;
+
+  &::placeholder {
+    color: #B2B7BF;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #7EBC3C;
+  }
+}
