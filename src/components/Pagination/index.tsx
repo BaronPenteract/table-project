@@ -1,7 +1,4 @@
-import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
-import { JsxElement } from 'typescript';
 
 import { getTableItemsSelector, setCurrentPage } from '../../redux/slices/TableItemsSlice';
 import { useAppDispatch } from '../../redux/store';
@@ -9,15 +6,12 @@ import { useAppDispatch } from '../../redux/store';
 import styles from './Pagination.module.scss';
 
 const Pagination: React.FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
   const dispatch = useAppDispatch();
 
   const { currentPage, pages } = useSelector(getTableItemsSelector);
 
   const haldlePageClick = (page: number) => {
     dispatch(setCurrentPage(page));
-    setSearchParams({ page: `${page + 1}` });
   };
 
   const setButtons: (n: number) => JSX.Element[] = (pages) => {

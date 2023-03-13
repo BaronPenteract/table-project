@@ -7,15 +7,16 @@ const Header: React.FC = () => {
 
   const handleChange: ChangeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
+    console.log('searchValue: ', searchValue);
   };
-  console.log('searchValue  ', searchValue);
+
   return (
     <header className={styles.root}>
       <input
         ref={inputRef}
         type="text"
         className={styles.search}
-        placeholder="Поиск doesnt work"
+        placeholder="Поиск НЕ РАБОТАЕТ!"
         onChange={handleChange}
         value={searchValue}
       />

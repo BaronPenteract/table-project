@@ -24,6 +24,12 @@
   &:hover {
     color: #7EBC3C;
   }
+
+  &:disabled {
+    opacity: .5;
+    cursor: default;
+    color: #474955;
+  }
 }
 
 .buttonPages {
