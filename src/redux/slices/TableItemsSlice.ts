@@ -12,7 +12,7 @@ import { RootState } from "../store";
 
 export interface TableItemsInterface {
   items: TableItemType[];
-  itemsArrays: TableItemType[][];
+  paginatedItems: TableItemType[][];
   currentPage: number;
   pageSize: number;
   pages: number;
@@ -38,7 +38,7 @@ export enum Status {
 
 const initialState: TableItemsInterface = {
   items: [],
-  itemsArrays: [],
+  paginatedItems: [],
   currentPage: 0,
   pageSize: 10,
   pages: 1,
@@ -56,17 +56,17 @@ export const TableItemsSlice = createSlice({
       const { pages, currentItems } = paginateData(state.items, state.pageSize);
 
       state.pages = pages;
-      state.itemsArrays = currentItems;
+      state.paginatedItems = currentItems;
 
       if (state.currentItems.length > 0) {
-        state.currentItems = state.itemsArrays[state.currentPage];
+        state.currentItems = state.paginatedItems[state.currentPage];
       }
     },
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
       
       if (state.items.length > state.pageSize) {
-        state.currentItems = state.itemsArrays[state.currentPage];
+        state.currentItems = state.paginatedItems[state.currentPage];
       }
     }, 
     
@@ -82,14 +82,14 @@ export const TableItemsSlice = createSlice({
       const { pages, currentItems } = paginateData(state.items, state.pageSize);
 
       state.pages = pages;
-      state.itemsArrays = currentItems;
+      state.paginatedItems = currentItems;
 
       if (state.currentPage > state.pages - 1) {
         state.currentPage = state.pages - 1
       } if(state.currentPage < 0) {
         state.currentPage = 0;
       } else {
-        state.currentItems = state.itemsArrays[state.currentPage];
+        state.currentItems = state.paginatedItems[state.currentPage];
       }
     })
     builder.addCase(fetchTableItems.rejected, (state, action)=> {

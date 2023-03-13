@@ -44,7 +44,7 @@ const Table: React.FC = () => {
   ));
 
   const emptyTableItemsElements = [...new Array(pageSize)].map((item, idx) => (
-    <TableItem key={idx} styles={styles} id={idx + 1} userId={0} title="" body="" />
+    <TableItem key={idx} styles={styles} id={-idx - 1} userId={0} title="" body="" />
   ));
 
   const handleSortClick = (type: 'id' | 'title' | 'body') => () => {
