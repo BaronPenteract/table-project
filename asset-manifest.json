@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/BaronPenteract/table-project/static/css/main.bb1f9c83.css",
-    "main.js": "/BaronPenteract/table-project/static/js/main.18825747.js",
-    "static/media/Roboto-Medium.ttf": "/BaronPenteract/table-project/static/media/Roboto-Medium.7c8d04cd831df3033c8a.ttf",
-    "static/media/Roboto-Regular.ttf": "/BaronPenteract/table-project/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
-    "static/media/Roboto-Bold.ttf": "/BaronPenteract/table-project/static/media/Roboto-Bold.f80816a5455d171f948d.ttf",
-    "index.html": "/BaronPenteract/table-project/index.html",
-    "main.bb1f9c83.css.map": "/BaronPenteract/table-project/static/css/main.bb1f9c83.css.map",
-    "main.18825747.js.map": "/BaronPenteract/table-project/static/js/main.18825747.js.map"
+    "main.css": "/table-project/static/css/main.2a1c2888.css",
+    "main.js": "/table-project/static/js/main.f4dcf8bc.js",
+    "static/media/Roboto-Medium.ttf": "/table-project/static/media/Roboto-Medium.7c8d04cd831df3033c8a.ttf",
+    "static/media/Roboto-Regular.ttf": "/table-project/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
+    "static/media/Roboto-Bold.ttf": "/table-project/static/media/Roboto-Bold.f80816a5455d171f948d.ttf",
+    "index.html": "/table-project/index.html",
+    "main.2a1c2888.css.map": "/table-project/static/css/main.2a1c2888.css.map",
+    "main.f4dcf8bc.js.map": "/table-project/static/js/main.f4dcf8bc.js.map"
   },
   "entrypoints": [
-    "static/css/main.bb1f9c83.css",
-    "static/js/main.18825747.js"
+    "static/css/main.2a1c2888.css",
+    "static/js/main.f4dcf8bc.js"
   ]
 }
