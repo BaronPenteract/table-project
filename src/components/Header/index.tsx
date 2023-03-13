@@ -15,7 +15,7 @@ const Header: React.FC = () => {
         ref={inputRef}
         type="text"
         className={styles.search}
-        placeholder="Поиск"
+        placeholder="Поиск doesnt work"
         onChange={handleChange}
         value={searchValue}
       />

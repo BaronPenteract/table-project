@@ -57,11 +57,17 @@ export const TableItemsSlice = createSlice({
 
       state.pages = pages;
       state.itemsArrays = currentItems;
-      state.currentItems = state.itemsArrays[state.currentPage];
+
+      if (state.currentItems.length > 0) {
+        state.currentItems = state.itemsArrays[state.currentPage];
+      }
     },
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
-      state.currentItems = state.itemsArrays[state.currentPage];
+      
+      if (state.items.length > state.pageSize) {
+        state.currentItems = state.itemsArrays[state.currentPage];
+      }
     }, 
     
   },
@@ -77,7 +83,14 @@ export const TableItemsSlice = createSlice({
 
       state.pages = pages;
       state.itemsArrays = currentItems;
-      state.currentItems = state.itemsArrays[state.currentPage];
+
+      if (state.currentPage > state.pages - 1) {
+        state.currentPage = state.pages - 1
+      } if(state.currentPage < 0) {
+        state.currentPage = 0;
+      } else {
+        state.currentItems = state.itemsArrays[state.currentPage];
+      }
     })
     builder.addCase(fetchTableItems.rejected, (state, action)=> {
       state.status = Status.ERROR;

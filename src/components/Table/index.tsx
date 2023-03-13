@@ -1,11 +1,12 @@
 import React from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   fetchTableItems,
   getTableItemsSelector,
   Status,
   setItems,
+  setCurrentPage,
 } from '../../redux/slices/TableItemsSlice';
 import { useAppDispatch } from '../../redux/store';
 import TableItem from '../TableItem';
@@ -13,31 +14,30 @@ import TableItem from '../TableItem';
 import styles from './Table.module.scss';
 
 const Table: React.FC = () => {
-  const { page } = useParams();
-  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const pageSearchParam = Number(searchParams.get('page')) || 1;
 
   const [sortByDesc, setSortByDesc] = React.useState(false);
 
   const dispatch = useAppDispatch();
+
+  const { items, currentItems, currentPage, pages, pageSize, status } =
+    useSelector(getTableItemsSelector);
 
   React.useEffect(() => {
     const getTableItems = async () => {
       await dispatch(fetchTableItems());
     };
 
+    dispatch(setCurrentPage(pageSearchParam - 1));
+
     getTableItems();
   }, []);
 
-  const { items, currentItems, currentPage, pages, pageSize, status } =
-    useSelector(getTableItemsSelector);
-
-  /*  if (page && typeof +page === 'number' && pages >= +page) {
-    //dispatch(setCurrentPage(+page));
-    console.log(page, currentItems);
-  } */
-  /* console.log(location);
-  location.pathname = `/${currentPage + 1}`;
-  window.location.search = location.pathname; */
+  React.useEffect(() => {
+    setSearchParams({ page: `${currentPage + 1}` });
+  }, [currentPage]);
 
   const tableItemsElements = currentItems.map((item) => (
     <TableItem key={item.id} styles={styles} {...item} />
@@ -51,6 +51,8 @@ const Table: React.FC = () => {
     if (items.length < 1 || status !== Status.SUCCESS) return;
 
     let sortedItems = [...items];
+
+    dispatch(setCurrentPage(0));
 
     sortedItems.sort((a, b) => {
       if (sortByDesc) {

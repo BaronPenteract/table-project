@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { JsxElement } from 'typescript';
 
 import { getTableItemsSelector, setCurrentPage } from '../../redux/slices/TableItemsSlice';
@@ -8,8 +9,16 @@ import { useAppDispatch } from '../../redux/store';
 import styles from './Pagination.module.scss';
 
 const Pagination: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const dispatch = useAppDispatch();
+
   const { currentPage, pages } = useSelector(getTableItemsSelector);
+
+  const haldlePageClick = (page: number) => {
+    dispatch(setCurrentPage(page));
+    setSearchParams({ page: `${page + 1}` });
+  };
 
   const setButtons: (n: number) => JSX.Element[] = (pages) => {
     let buttonsElements = [];
@@ -20,7 +29,7 @@ const Pagination: React.FC = () => {
           key={i}
           className={`${styles.button} ${currentPage === i ? styles.buttonActive : ''}`}
           type="button"
-          onClick={() => dispatch(setCurrentPage(i))}
+          onClick={() => haldlePageClick(i)}
           disabled={pages < 2}
         >
           {i + 1}
@@ -35,7 +44,7 @@ const Pagination: React.FC = () => {
       <button
         className={styles.button}
         type="button"
-        onClick={() => dispatch(setCurrentPage(currentPage - 1))}
+        onClick={() => haldlePageClick(currentPage - 1)}
         disabled={currentPage <= 0}
       >
         Назад
@@ -44,7 +53,7 @@ const Pagination: React.FC = () => {
       <button
         className={styles.button}
         type="button"
-        onClick={() => dispatch(setCurrentPage(currentPage + 1))}
+        onClick={() => haldlePageClick(currentPage + 1)}
         disabled={currentPage >= pages - 1}
       >
         Далее
